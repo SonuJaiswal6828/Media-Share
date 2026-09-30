@@ -5,5 +5,6 @@ from models.section import Section
 from models.photo import Photo
 from models.access_request import AccessRequest
 from models.session import Session
+from models.document import Document
 
 Base.metadata.create_all(engine)
