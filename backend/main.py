@@ -23,6 +23,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/")
+def root():
+    return {
+        "message": "MediaShare API",
+        "status": "running",
+        "docs": "/docs"
+    }
+
 app.include_router(admin_router, prefix="/admin", tags=["Admin"])
 app.include_router(group_router, prefix="/group", tags=["Group"])
 app.include_router(section_router, prefix="/section", tags=["Section"])
