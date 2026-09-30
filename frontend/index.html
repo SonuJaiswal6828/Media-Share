@@ -3,25 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PhotoShare - Secure Photo Sharing</title>
+  <title>MediaShare — Secure Media Sharing with Temporary Access</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
   <script>
     tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
-          colors: {
-            bg: '#0a0a0a',
-            card: '#141414',
-            border: '#262626',
-            primary: '#8b5cf6',
-            accent: '#6366f1',
-          }
-        }
-      }
+      theme: { extend: {
+        fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        colors: { bg: '#0a0a0a', card: '#141414', border: '#262626' }
+      }}
     }
   </script>
 </head>
@@ -31,119 +23,217 @@
 
   <main class="flex-1">
     <!-- Hero -->
-    <section class="relative overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-indigo-900/20"></div>
-      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-purple-600/20 rounded-full blur-3xl"></div>
+    <section class="relative overflow-hidden pt-20 pb-24 md:pt-32 md:pb-36">
+      <!-- Background effects -->
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(139,92,246,0.15),transparent_50%)]"></div>
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-purple-600/[0.08] rounded-full blur-[120px]"></div>
 
-      <div class="relative max-w-5xl mx-auto text-center px-4 py-24">
-        <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 mb-6 text-sm text-gray-300">
-          <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+      <!-- Grid overlay -->
+      <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]"></div>
+
+      <div class="relative max-w-6xl mx-auto text-center px-4">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 bg-white/[0.04] border border-white/[0.08] rounded-full px-4 py-1.5 mb-8 text-xs text-gray-300 backdrop-blur">
+          <span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
           Now with 1-hour temporary access
         </div>
 
-        <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-          Share photos.
-          <span class="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">Securely.</span>
+        <!-- Heading -->
+        <h1 class="text-5xl md:text-7xl lg:text-[88px] font-bold mb-6 tracking-[-0.03em] leading-[1.05]">
+          Share media.
+          <br />
+          <span class="bg-gradient-to-r from-purple-400 via-purple-300 to-indigo-400 bg-clip-text text-transparent">
+            On your terms.
+          </span>
         </h1>
 
-        <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
-          Organize photos into groups and sections. Grant temporary access.
-          Revoke anytime. Built with modern security.
+        <p class="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed">
+          Secure photo and document sharing with temporary, revocable access.
+          Built for people who care about who sees what.
         </p>
 
-        <div class="flex gap-4 justify-center flex-wrap">
+        <!-- CTA -->
+        <div class="flex gap-3 justify-center flex-wrap">
           <a href="signup.html"
-             class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white px-8 py-3 rounded-lg font-semibold transition shadow-lg shadow-purple-900/40">
+             class="group bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white px-7 py-3.5 rounded-xl font-semibold transition-all shadow-lg shadow-purple-900/40 hover:shadow-purple-900/60 hover:scale-[1.02] flex items-center gap-2">
             Get Started Free
+            <span class="group-hover:translate-x-0.5 transition">→</span>
           </a>
           <a href="request-access.html"
-             class="bg-white/5 border border-white/10 hover:bg-white/10 text-white px-8 py-3 rounded-lg font-semibold transition">
+             class="bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] text-white px-7 py-3.5 rounded-xl font-semibold transition backdrop-blur">
             Request Access
           </a>
+        </div>
+
+        <!-- Trust line -->
+        <p class="text-xs text-gray-500 mt-8">
+          No credit card · Free forever · Open source
+        </p>
+      </div>
+    </section>
+
+    <!-- Stats strip -->
+    <section class="border-y border-white/[0.06] bg-white/[0.01]">
+      <div class="max-w-6xl mx-auto px-4 py-10 grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="text-center">
+          <p class="text-3xl md:text-4xl font-bold text-white tracking-tight">1hr</p>
+          <p class="text-xs text-gray-500 mt-1.5 uppercase tracking-wider">Session Window</p>
+        </div>
+        <div class="text-center">
+          <p class="text-3xl md:text-4xl font-bold text-white tracking-tight">JWT</p>
+          <p class="text-xs text-gray-500 mt-1.5 uppercase tracking-wider">Secure Auth</p>
+        </div>
+        <div class="text-center">
+          <p class="text-3xl md:text-4xl font-bold text-white tracking-tight">100%</p>
+          <p class="text-xs text-gray-500 mt-1.5 uppercase tracking-wider">Revocable</p>
+        </div>
+        <div class="text-center">
+          <p class="text-3xl md:text-4xl font-bold text-white tracking-tight">Cloud</p>
+          <p class="text-xs text-gray-500 mt-1.5 uppercase tracking-wider">Storage</p>
         </div>
       </div>
     </section>
 
     <!-- Features -->
-    <section class="max-w-6xl mx-auto py-20 px-4">
-      <div class="text-center mb-14">
-        <h2 class="text-4xl font-bold mb-3">Everything you need</h2>
-        <p class="text-gray-400">Powerful features for secure photo sharing</p>
+    <section class="max-w-6xl mx-auto py-24 px-4">
+      <div class="text-center mb-16">
+        <p class="text-xs text-purple-400 font-semibold uppercase tracking-widest mb-3">Features</p>
+        <h2 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Everything you need</h2>
+        <p class="text-gray-400 max-w-xl mx-auto">
+          Powerful capabilities for secure media sharing — without the complexity
+        </p>
       </div>
 
-      <div class="grid md:grid-cols-4 gap-5">
-        <div class="bg-card border border-border rounded-xl p-6 hover:border-purple-600/50 transition group">
-          <div class="w-12 h-12 bg-gradient-to-br from-purple-600/20 to-indigo-600/20 border border-purple-600/30 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition">
-            <span class="text-2xl">🔒</span>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Bento: Large card -->
+        <div class="lg:col-span-2 bg-gradient-to-br from-purple-600/[0.08] to-indigo-600/[0.04] border border-purple-600/20 rounded-2xl p-8 hover:border-purple-600/40 transition-all">
+          <div class="w-12 h-12 bg-purple-600/20 border border-purple-600/30 rounded-xl flex items-center justify-center mb-5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round">
+              <rect x="3" y="11" width="18" height="11" rx="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
           </div>
-          <h3 class="font-semibold mb-2 text-white">Secure Auth</h3>
-          <p class="text-sm text-gray-400">JWT-based admin authentication with bcrypt hashing</p>
+          <h3 class="text-xl font-semibold text-white mb-2">Secure by default</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            JWT authentication, bcrypt password hashing, and user enumeration protection.
+            Every request is verified. Every action is logged.
+          </p>
         </div>
 
-        <div class="bg-card border border-border rounded-xl p-6 hover:border-purple-600/50 transition group">
-          <div class="w-12 h-12 bg-gradient-to-br from-purple-600/20 to-indigo-600/20 border border-purple-600/30 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition">
-            <span class="text-2xl">⏱️</span>
+        <div class="bg-card border border-white/[0.06] rounded-2xl p-8 hover:border-white/[0.12] transition">
+          <div class="w-12 h-12 bg-white/[0.04] border border-white/[0.08] rounded-xl flex items-center justify-center mb-5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a1a1aa" stroke-width="2" stroke-linecap="round">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
           </div>
-          <h3 class="font-semibold mb-2 text-white">1-Hour Sessions</h3>
-          <p class="text-sm text-gray-400">Auto-expiring access tokens that can be revoked</p>
+          <h3 class="text-lg font-semibold text-white mb-2">1-Hour Sessions</h3>
+          <p class="text-gray-400 text-sm">Auto-expiring tokens. Revoke anytime.</p>
         </div>
 
-        <div class="bg-card border border-border rounded-xl p-6 hover:border-purple-600/50 transition group">
-          <div class="w-12 h-12 bg-gradient-to-br from-purple-600/20 to-indigo-600/20 border border-purple-600/30 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition">
-            <span class="text-2xl">☁️</span>
+        <div class="bg-card border border-white/[0.06] rounded-2xl p-8 hover:border-white/[0.12] transition">
+          <div class="w-12 h-12 bg-white/[0.04] border border-white/[0.08] rounded-xl flex items-center justify-center mb-5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a1a1aa" stroke-width="2" stroke-linecap="round">
+              <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10Z"/>
+            </svg>
           </div>
-          <h3 class="font-semibold mb-2 text-white">Cloud Photos</h3>
-          <p class="text-sm text-gray-400">Cloudinary-powered secure image storage</p>
+          <h3 class="text-lg font-semibold text-white mb-2">Cloud Storage</h3>
+          <p class="text-gray-400 text-sm">Cloudinary-powered uploads.</p>
         </div>
 
-        <div class="bg-card border border-border rounded-xl p-6 hover:border-purple-600/50 transition group">
-          <div class="w-12 h-12 bg-gradient-to-br from-purple-600/20 to-indigo-600/20 border border-purple-600/30 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition">
-            <span class="text-2xl">👥</span>
+        <div class="lg:col-span-2 bg-gradient-to-br from-indigo-600/[0.08] to-purple-600/[0.04] border border-indigo-600/20 rounded-2xl p-8 hover:border-indigo-600/40 transition">
+          <div class="w-12 h-12 bg-indigo-600/20 border border-indigo-600/30 rounded-xl flex items-center justify-center mb-5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2" stroke-linecap="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
           </div>
-          <h3 class="font-semibold mb-2 text-white">Access Control</h3>
-          <p class="text-sm text-gray-400">Approve or reject requests with one click</p>
+          <h3 class="text-xl font-semibold text-white mb-2">Granular access control</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Approve or reject every access request. Track active sessions.
+            Revoke access with a single click — instantly.
+          </p>
         </div>
       </div>
     </section>
 
     <!-- How It Works -->
-    <section class="max-w-4xl mx-auto py-20 px-4">
-      <div class="text-center mb-14">
-        <h2 class="text-4xl font-bold mb-3">How it works</h2>
-        <p class="text-gray-400">Four simple steps</p>
+    <section class="max-w-5xl mx-auto py-24 px-4">
+      <div class="text-center mb-16">
+        <p class="text-xs text-purple-400 font-semibold uppercase tracking-widest mb-3">Workflow</p>
+        <h2 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight">How it works</h2>
+        <p class="text-gray-400">Four simple steps from upload to access</p>
       </div>
 
-      <div class="space-y-4">
-        <div class="bg-card border border-border rounded-xl p-6 flex gap-5 items-start hover:border-purple-600/50 transition">
-          <div class="bg-gradient-to-br from-purple-600 to-indigo-600 text-white w-10 h-10 rounded-lg flex items-center justify-center font-bold flex-shrink-0">1</div>
-          <div>
-            <h3 class="font-semibold mb-1 text-white">Admin creates groups & sections</h3>
-            <p class="text-gray-400 text-sm">Organize photos into groups (like "Wedding 2026") and sections (like "Haldi", "Reception").</p>
+      <div class="space-y-3">
+        <div class="group bg-card border border-white/[0.06] rounded-2xl p-6 md:p-7 flex gap-6 items-start hover:border-purple-600/30 transition-all">
+          <div class="flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center font-bold text-white text-sm shadow-lg shadow-purple-900/40">
+            01
           </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-white mb-1.5">Create groups & sections</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Organize media into groups (like "Wedding 2026") and sections (like "Haldi", "Reception").
+            </p>
+          </div>
+          <span class="text-gray-600 group-hover:text-purple-400 group-hover:translate-x-1 transition hidden md:block">→</span>
         </div>
 
-        <div class="bg-card border border-border rounded-xl p-6 flex gap-5 items-start hover:border-purple-600/50 transition">
-          <div class="bg-gradient-to-br from-purple-600 to-indigo-600 text-white w-10 h-10 rounded-lg flex items-center justify-center font-bold flex-shrink-0">2</div>
-          <div>
-            <h3 class="font-semibold mb-1 text-white">Friend requests access</h3>
-            <p class="text-gray-400 text-sm">Using group code + password, they submit an access request.</p>
+        <div class="group bg-card border border-white/[0.06] rounded-2xl p-6 md:p-7 flex gap-6 items-start hover:border-purple-600/30 transition-all">
+          <div class="flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center font-bold text-white text-sm shadow-lg shadow-purple-900/40">
+            02
           </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-white mb-1.5">Friend requests access</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Using a group code and password, they submit an access request.
+            </p>
+          </div>
+          <span class="text-gray-600 group-hover:text-purple-400 group-hover:translate-x-1 transition hidden md:block">→</span>
         </div>
 
-        <div class="bg-card border border-border rounded-xl p-6 flex gap-5 items-start hover:border-purple-600/50 transition">
-          <div class="bg-gradient-to-br from-purple-600 to-indigo-600 text-white w-10 h-10 rounded-lg flex items-center justify-center font-bold flex-shrink-0">3</div>
-          <div>
-            <h3 class="font-semibold mb-1 text-white">Admin approves</h3>
-            <p class="text-gray-400 text-sm">A 1-hour temporary session is created with a unique token.</p>
+        <div class="group bg-card border border-white/[0.06] rounded-2xl p-6 md:p-7 flex gap-6 items-start hover:border-purple-600/30 transition-all">
+          <div class="flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center font-bold text-white text-sm shadow-lg shadow-purple-900/40">
+            03
           </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-white mb-1.5">You approve</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              A 1-hour temporary session is created with a unique 32-character token.
+            </p>
+          </div>
+          <span class="text-gray-600 group-hover:text-purple-400 group-hover:translate-x-1 transition hidden md:block">→</span>
         </div>
 
-        <div class="bg-card border border-border rounded-xl p-6 flex gap-5 items-start hover:border-purple-600/50 transition">
-          <div class="bg-gradient-to-br from-purple-600 to-indigo-600 text-white w-10 h-10 rounded-lg flex items-center justify-center font-bold flex-shrink-0">4</div>
-          <div>
-            <h3 class="font-semibold mb-1 text-white">Friend views photos</h3>
-            <p class="text-gray-400 text-sm">Using session token, they view and download photos until it expires or is revoked.</p>
+        <div class="group bg-card border border-white/[0.06] rounded-2xl p-6 md:p-7 flex gap-6 items-start hover:border-purple-600/30 transition-all">
+          <div class="flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center font-bold text-white text-sm shadow-lg shadow-purple-900/40">
+            04
           </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-white mb-1.5">Friend views media</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Using the session token, they view and download content until it expires or you revoke it.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="max-w-5xl mx-auto py-24 px-4">
+      <div class="relative overflow-hidden bg-gradient-to-br from-purple-600/[0.08] to-indigo-600/[0.04] border border-purple-600/20 rounded-3xl p-12 md:p-16 text-center">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.15),transparent_70%)]"></div>
+        <div class="relative">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+            Ready to share securely?
+          </h2>
+          <p class="text-gray-400 mb-10 max-w-xl mx-auto">
+            Start organizing your media and controlling who has access — in less than 60 seconds.
+          </p>
+          <a href="signup.html"
+             class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white px-8 py-3.5 rounded-xl font-semibold transition-all shadow-lg shadow-purple-900/40 hover:shadow-purple-900/60 hover:scale-[1.02]">
+            Create your account →
+          </a>
         </div>
       </div>
     </section>

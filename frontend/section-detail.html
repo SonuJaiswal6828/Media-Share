@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Section - PhotoShare</title>
+  <title>Section — MediaShare</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -21,51 +21,79 @@
 
   <div id="navbar"></div>
 
-  <main class="flex-1 max-w-7xl mx-auto w-full px-4 py-10">
-    <a href="javascript:history.back()" class="text-sm text-gray-400 hover:text-purple-400 transition mb-6 inline-flex items-center gap-1">
-      ← Back
+  <main class="flex-1 max-w-7xl mx-auto w-full px-4 md:px-6 py-10">
+    <!-- Back -->
+    <a href="javascript:history.back()" class="text-sm text-gray-400 hover:text-purple-400 transition mb-8 inline-flex items-center gap-1.5">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="m15 18-6-6 6-6"/>
+      </svg>
+      Back
     </a>
 
-    <div class="flex justify-between items-center mb-8 flex-wrap gap-4">
+    <!-- Header -->
+    <div class="mb-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
       <div>
-        <h1 class="text-4xl font-bold mb-2 text-white">Section Content</h1>
+        <h1 class="text-4xl font-bold mb-2 text-white tracking-tight">Section Content</h1>
         <p class="text-gray-400">Manage photos and documents</p>
       </div>
-      <label id="uploadBtn" class="btn-primary flex items-center gap-2 cursor-pointer">
-        <span class="text-lg">+</span>
+      <label id="uploadBtn" class="btn-primary inline-flex items-center gap-2 cursor-pointer">
+        <span class="text-lg leading-none">+</span>
         <span id="uploadLabel">Upload</span>
         <input type="file" id="fileInput" class="hidden" />
       </label>
     </div>
 
     <!-- Tabs -->
-    <div class="flex gap-2 mb-6 border-b border-border">
+    <div class="flex gap-1 mb-8 border-b border-white/[0.06]">
       <button onclick="switchTab('photos')" id="tab-photos"
-              class="px-4 py-2 border-b-2 border-purple-600 text-purple-400 font-medium transition">
-        🖼️ Photos
+              class="relative px-4 py-3 text-sm font-medium transition text-white">
+        <span class="flex items-center gap-2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+          </svg>
+          Photos
+        </span>
+        <span class="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-purple-500 to-indigo-500 rounded-t"></span>
       </button>
       <button onclick="switchTab('documents')" id="tab-documents"
-              class="px-4 py-2 border-b-2 border-transparent text-gray-400 hover:text-white transition">
-        📄 Documents
+              class="relative px-4 py-3 text-sm font-medium transition text-gray-400 hover:text-white">
+        <span class="flex items-center gap-2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>
+          </svg>
+          Documents
+        </span>
+        <span class="tab-underline hidden absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-purple-500 to-indigo-500 rounded-t"></span>
       </button>
     </div>
 
     <!-- Progress -->
-    <div id="progress" class="hidden bg-card border border-border rounded-xl p-4 mb-6">
-      <p class="text-sm text-gray-300 mb-2" id="progressText">Uploading...</p>
-      <div class="w-full bg-white/5 rounded-full h-2 overflow-hidden">
-        <div id="progressBar" class="bg-gradient-to-r from-purple-600 to-indigo-600 h-full transition-all" style="width: 0%"></div>
+    <div id="progress" class="hidden bg-card border border-white/[0.06] rounded-xl p-4 mb-6">
+      <div class="flex items-center justify-between mb-2">
+        <p class="text-sm text-gray-300" id="progressText">Uploading...</p>
+        <p class="text-xs text-gray-500" id="progressPercent">0%</p>
+      </div>
+      <div class="w-full bg-white/[0.04] rounded-full h-1.5 overflow-hidden">
+        <div id="progressBar" class="bg-gradient-to-r from-purple-600 to-indigo-600 h-full transition-all duration-300" style="width: 0%"></div>
       </div>
     </div>
 
     <!-- Photos View -->
     <div id="photosView">
-      <div class="spinner"></div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div class="aspect-square bg-card border border-white/[0.06] rounded-xl animate-pulse"></div>
+        <div class="aspect-square bg-card border border-white/[0.06] rounded-xl animate-pulse"></div>
+        <div class="aspect-square bg-card border border-white/[0.06] rounded-xl animate-pulse"></div>
+        <div class="aspect-square bg-card border border-white/[0.06] rounded-xl animate-pulse"></div>
+      </div>
     </div>
 
     <!-- Documents View -->
     <div id="documentsView" class="hidden">
-      <div class="spinner"></div>
+      <div class="space-y-3">
+        <div class="h-20 bg-card border border-white/[0.06] rounded-xl animate-pulse"></div>
+        <div class="h-20 bg-card border border-white/[0.06] rounded-xl animate-pulse"></div>
+      </div>
     </div>
   </main>
 
@@ -91,11 +119,23 @@
       activeTab = tab;
 
       document.querySelectorAll('[id^="tab-"]').forEach(btn => {
-        btn.classList.remove('border-purple-600', 'text-purple-400');
-        btn.classList.add('border-transparent', 'text-gray-400');
+        btn.classList.remove('text-white');
+        btn.classList.add('text-gray-400');
+        btn.querySelector('.tab-underline')?.classList.add('hidden');
+        btn.querySelector('span:last-child:not(.tab-underline)')?.classList.add('hidden');
       });
-      document.getElementById(`tab-${tab}`).classList.add('border-purple-600', 'text-purple-400');
-      document.getElementById(`tab-${tab}`).classList.remove('border-transparent', 'text-gray-400');
+
+      const activeBtn = document.getElementById(`tab-${tab}`);
+      activeBtn.classList.remove('text-gray-400');
+      activeBtn.classList.add('text-white');
+
+      // Show/hide underline
+      const underline = activeBtn.querySelector('.tab-underline');
+      if (underline) {
+        underline.classList.remove('hidden');
+      } else {
+        activeBtn.querySelector('span:last-child')?.classList.remove('hidden');
+      }
 
       document.getElementById('photosView').classList.toggle('hidden', tab !== 'photos');
       document.getElementById('documentsView').classList.toggle('hidden', tab !== 'documents');
@@ -118,29 +158,43 @@
 
         if (photos.length === 0) {
           container.innerHTML = `
-            <div class="bg-card border border-border rounded-2xl p-16 text-center">
-              <div class="text-5xl mb-4">🖼️</div>
-              <h3 class="text-xl font-bold mb-2 text-white">No photos yet</h3>
-              <p class="text-gray-400">Upload your first photo</p>
+            <div class="bg-card border border-white/[0.06] rounded-2xl p-16 text-center">
+              <div class="w-16 h-16 mx-auto mb-5 rounded-2xl bg-purple-600/10 border border-purple-600/20 flex items-center justify-center text-3xl">
+                🖼️
+              </div>
+              <h3 class="text-xl font-semibold mb-2 text-white">No photos yet</h3>
+              <p class="text-gray-400 max-w-sm mx-auto">Upload your first photo to get started</p>
             </div>`;
           return;
         }
 
         container.innerHTML = `<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           ${photos.map(p => `
-            <div class="photo-card bg-card border border-border rounded-xl overflow-hidden group relative">
-              <img src="${p.file_url}" alt="photo" class="w-full h-48 object-cover" />
-              <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2">
-                <a href="${p.file_url}" target="_blank" class="bg-white/20 text-white px-3 py-2 rounded-lg text-sm">🔍</a>
-                <button onclick="deletePhoto(${p.id})" class="bg-red-500/80 text-white px-3 py-2 rounded-lg text-sm">🗑️</button>
+            <div class="group relative aspect-square bg-card border border-white/[0.06] rounded-xl overflow-hidden hover:border-purple-600/40 transition-all">
+              <img src="${p.file_url}" alt="photo" class="w-full h-full object-cover" loading="lazy" />
+              <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2">
+                <a href="${p.file_url}" target="_blank"
+                   class="w-9 h-9 rounded-lg bg-white/10 backdrop-blur border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition"
+                   title="View">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+                  </svg>
+                </a>
+                <button onclick="deletePhoto(${p.id})"
+                        class="w-9 h-9 rounded-lg bg-red-500/20 backdrop-blur border border-red-500/30 flex items-center justify-center text-red-400 hover:bg-red-500/30 transition"
+                        title="Delete">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                  </svg>
+                </button>
               </div>
             </div>
           `).join("")}
         </div>`;
       } catch (err) {
         document.getElementById("photosView").innerHTML = `
-          <div class="bg-card border border-red-500/30 rounded-2xl p-16 text-center">
-            <p class="text-red-400">${err.message}</p>
+          <div class="bg-red-500/10 border border-red-500/30 rounded-2xl p-8 text-center">
+            <p class="text-red-400 text-sm">${err.message}</p>
           </div>`;
       }
     }
@@ -163,36 +217,46 @@
 
         if (docs.length === 0) {
           container.innerHTML = `
-            <div class="bg-card border border-border rounded-2xl p-16 text-center">
-              <div class="text-5xl mb-4">📄</div>
-              <h3 class="text-xl font-bold mb-2 text-white">No documents yet</h3>
-              <p class="text-gray-400">Upload your first document</p>
+            <div class="bg-card border border-white/[0.06] rounded-2xl p-16 text-center">
+              <div class="w-16 h-16 mx-auto mb-5 rounded-2xl bg-indigo-600/10 border border-indigo-600/20 flex items-center justify-center text-3xl">
+                📄
+              </div>
+              <h3 class="text-xl font-semibold mb-2 text-white">No documents yet</h3>
+              <p class="text-gray-400 max-w-sm mx-auto">Upload your first document to get started</p>
             </div>`;
           return;
         }
 
-        container.innerHTML = `<div class="space-y-3">
+        container.innerHTML = `<div class="space-y-2">
           ${docs.map(d => {
             const sizeKB = d.file_size ? (d.file_size / 1024).toFixed(1) : "?";
             const ext = (d.file_format || "file").toUpperCase();
             return `
-              <div class="bg-card border border-border rounded-xl p-5 flex items-center gap-4 hover:border-purple-600/50 transition">
-                <div class="w-12 h-12 bg-blue-600/20 border border-blue-600/30 rounded-lg flex items-center justify-center text-xl flex-shrink-0">
-                  📄
+              <div class="group bg-card border border-white/[0.06] rounded-xl p-4 flex items-center gap-4 hover:border-purple-600/40 transition-all">
+                <div class="w-12 h-12 rounded-xl bg-indigo-600/20 border border-indigo-600/30 flex items-center justify-center flex-shrink-0">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2" stroke-linecap="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>
+                  </svg>
                 </div>
                 <div class="flex-1 min-w-0">
                   <p class="font-medium text-white truncate">${d.file_name}</p>
                   <p class="text-xs text-gray-500 mt-1">
-                    ${ext} · ${sizeKB} KB · ${new Date(d.uploaded_at).toLocaleString()}
+                    ${ext} · ${sizeKB} KB · ${new Date(d.uploaded_at).toLocaleDateString()}
                   </p>
                 </div>
                 <a href="${d.file_url}" target="_blank" download
-                   class="bg-purple-600/20 border border-purple-600/40 text-purple-300 hover:bg-purple-600/30 px-4 py-2 rounded-lg text-sm transition">
-                  ⬇️ Download
+                   class="px-3 py-2 bg-white/[0.04] border border-white/[0.08] text-gray-300 hover:bg-purple-600/20 hover:border-purple-600/40 hover:text-purple-300 rounded-lg text-xs font-medium transition flex items-center gap-1.5">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+                  </svg>
+                  Download
                 </a>
                 <button onclick="deleteDocument(${d.id})"
-                        class="bg-red-500/10 border border-red-500/30 text-red-400 hover:bg-red-500/20 px-3 py-2 rounded-lg text-sm transition">
-                  🗑️
+                        class="p-2 bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 rounded-lg transition"
+                        title="Delete">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                  </svg>
                 </button>
               </div>
             `;
@@ -200,8 +264,8 @@
         </div>`;
       } catch (err) {
         document.getElementById("documentsView").innerHTML = `
-          <div class="bg-card border border-red-500/30 rounded-2xl p-16 text-center">
-            <p class="text-red-400">${err.message}</p>
+          <div class="bg-red-500/10 border border-red-500/30 rounded-2xl p-8 text-center">
+            <p class="text-red-400 text-sm">${err.message}</p>
           </div>`;
       }
     }
@@ -223,15 +287,18 @@
 
       const progress = document.getElementById("progress");
       const bar = document.getElementById("progressBar");
+      const percent = document.getElementById("progressPercent");
       const text = document.getElementById("progressText");
       progress.classList.remove("hidden");
       bar.style.width = "10%";
+      percent.textContent = "10%";
       text.textContent = "Getting signature...";
 
       try {
         if (activeTab === "photos") {
           const sig = await api.get("/photos/get-upload-signature");
           bar.style.width = "30%";
+          percent.textContent = "30%";
           text.textContent = "Uploading...";
 
           const formData = new FormData();
@@ -246,6 +313,7 @@
           );
           const cloudData = await cloudRes.json();
           bar.style.width = "70%";
+          percent.textContent = "70%";
 
           await api.post("/photos/save_photo", {
             section_id: parseInt(sectionId),
@@ -253,13 +321,14 @@
           });
 
           bar.style.width = "100%";
-          showToast("Photo uploaded!", "success");
+          percent.textContent = "100%";
+          showToast("Photo uploaded", "success");
           setTimeout(() => progress.classList.add("hidden"), 800);
           loadPhotos();
-
         } else {
           const sig = await api.get("/documents/get-upload-signature");
           bar.style.width = "30%";
+          percent.textContent = "30%";
           text.textContent = "Uploading...";
 
           const formData = new FormData();
@@ -274,6 +343,7 @@
           );
           const cloudData = await cloudRes.json();
           bar.style.width = "70%";
+          percent.textContent = "70%";
 
           await api.post("/documents/save", {
             section_id: parseInt(sectionId),
@@ -284,7 +354,8 @@
           });
 
           bar.style.width = "100%";
-          showToast("Document uploaded!", "success");
+          percent.textContent = "100%";
+          showToast("Document uploaded", "success");
           setTimeout(() => progress.classList.add("hidden"), 800);
           loadDocuments();
         }

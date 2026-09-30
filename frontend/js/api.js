@@ -104,3 +104,21 @@ function logout() {
   clearToken();
   window.location.href = "login.html";
 }
+
+function showToast(message, type = "info") {
+  const colors = {
+    info: "bg-blue-500/90 border-blue-400/30",
+    success: "bg-green-500/90 border-green-400/30",
+    error: "bg-red-500/90 border-red-400/30",
+  };
+  const div = document.createElement("div");
+  div.className = `toast-anim fixed top-4 right-4 ${colors[type]} backdrop-blur border text-white px-4 py-3 rounded-xl shadow-2xl shadow-black/50 z-[9999] text-sm font-medium`;
+  div.textContent = message;
+  document.body.appendChild(div);
+  setTimeout(() => {
+    div.style.transition = "opacity 0.3s, transform 0.3s";
+    div.style.opacity = "0";
+    div.style.transform = "translateX(20px)";
+    setTimeout(() => div.remove(), 300);
+  }, 3000);
+}
